@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Market — Premium Tools for AI Coding Agents</title>
+  <meta name="description" content="Production-ready MCP servers and developer tools for Claude Code, Cursor, Windsurf, and Antigravity. Database explorer, file generation, API testing, and more.">
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --surface: #141416;
+      --surface-2: #1c1c20;
+      --border: #2a2a30;
+      --text: #e8e8ec;
+      --text-muted: #8888a0;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --radius: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ────────────────────────── */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0;
+      background: rgba(10, 10, 11, 0.9);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+
+    /* ── Hero ───────────────────────── */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── Products ───────────────────── */
+    .products { padding: 60px 0; }
+    .products h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .product-card .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+    .tag-mcp { background: rgba(99, 102, 241, 0.15); color: var(--accent); }
+    .tag-bundle { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+    .tag-toolkit { background: rgba(245, 158, 11, 0.15); color: var(--orange); }
+    .product-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+    .product-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
+    .product-card ul {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .product-card ul li {
+      padding: 4px 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .product-card ul li::before {
+      content: "→ ";
+      color: var(--accent);
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .price small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #5558e6;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+    .btn-free {
+      background: transparent;
+      color: var(--green);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .btn-free:hover {
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    /* ── Bundles ────────────────────── */
+    .bundles {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+    }
+    .bundle-card {
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(99, 102, 241, 0.05) 100%);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 48px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .bundle-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; }
+    .bundle-card p { color: var(--text-muted); margin-bottom: 8px; }
+    .bundle-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 24px 0;
+    }
+    .bundle-items span {
+      padding: 6px 16px;
+      background: var(--surface-2);
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .original-price {
+      text-decoration: line-through;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-right: 8px;
+    }
+    .bundle-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 16px 0;
+    }
+    .savings {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--green);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    /* ── Compatibility ──────────────── */
+    .compat {
+      padding: 60px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .compat h2 { margin-bottom: 32px; font-size: 1.5rem; }
+    .compat-logos {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .compat-logos span {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    /* ── CTA ────────────────────────── */
+    .cta {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .cta h2 { font-size: 2rem; margin-bottom: 16px; }
+    .cta p { color: var(--text-muted); margin-bottom: 32px; }
+
+    /* ── Footer ─────────────────────── */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 0 40px; }
+      .bundle-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">MCP<span>Market</span></div>
+    <div>
+      <a href="https://github.com/P1Piyush" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Launch Pricing — 30% Off</div>
+    <h1>Supercharge your <em>AI coding agent</em></h1>
+    <p>Production-ready MCP servers and developer tools. One-command install. Works with Claude Code, Cursor, Windsurf, and Antigravity.</p>
+  </div>
+</section>
+
+<section class="products">
+  <div class="container">
+    <h2>Products</h2>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <span class="tag tag-mcp">MCP Server</span>
+        <h3>Database Explorer</h3>
+        <p>Connect your AI agent directly to PostgreSQL, MySQL, or SQLite. Query schemas, run safe queries, generate migrations.</p>
+        <ul>
+          <li>8 tools — list, describe, query, explain, stats, sample, migrate, full schema</li>
+          <li>Read-only safety — destructive queries are blocked</li>
+          <li>Works with SQLite, PostgreSQL, and MySQL</li>
+        </ul>
+        <div class="price-row">
+          <span class="price">$19 <small>one-time</small></span>
+          <a href="https://github.com/P1Piyush/database-explorer-mcp" class="btn btn-free" target="_blank">Free on GitHub</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="tag tag-mcp">MCP Server</span>
+        <h3>FileForge</h3>
+        <p>Generate PDFs, Word docs, and Excel spreadsheets. Convert between CSV, JSON, Markdown, and HTML.</p>
+        <ul>
+          <li>7 tools — PDF, DOCX, XLSX, CSV, JSON, Markdown, HTML</li>
+          <li>No external API calls — everything runs locally</li>
+          <li>Structured content input for professional output</li>
+        </ul>
+        <div class="price-row">
+          <span class="price">$19 <small>one-time</small></span>
+          <a href="https://github.com/P1Piyush/file-forge-mcp" class="btn btn-free" target="_blank">Free on GitHub</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="tag tag-mcp">MCP Server</span>
+        <h3>API Tester</h3>
+        <p>Postman-grade HTTP testing. Make requests, save collections, parse curl commands, generate API docs.</p>
+        <ul>
+          <li>7 tools — HTTP requests, collections, health checks, curl parsing</li>
+          <li>Saved collections in ~/.mcp-api-tester/</li>
+          <li>Auto-generated markdown API documentation</li>
+        </ul>
+        <div class="price-row">
+          <span class="price">$19 <small>one-time</small></span>
+          <a href="https://github.com/P1Piyush/api-tester-mcp" class="btn btn-free" target="_blank">Free on GitHub</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="tag tag-bundle">14 Languages</span>
+        <h3>Claude Code Power Pack</h3>
+        <p>Rules for 14 languages, brain toolkit for token saving, hook templates, and workflow automation.</p>
+        <ul>
+          <li>Rules: TypeScript, Python, Go, Rust, Java, Kotlin, Swift, PHP, C++, C#, Dart, Perl, Web</li>
+          <li>Brain toolkit — 60-80% token savings</li>
+          <li>Interactive installer with language selection</li>
+        </ul>
+        <div class="price-row">
+          <span class="price">$39 <small>one-time</small></span>
+          <a href="https://github.com/P1Piyush/claude-power-pack" class="btn btn-free" target="_blank">Free on GitHub</a>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <span class="tag tag-toolkit">Token Saver</span>
+        <h3>AI Brain Toolkit</h3>
+        <p>Three scripts that reduce token consumption by 60-80%. Project indexer, file digester, session scratchpad.</p>
+        <ul>
+          <li>project-brain.sh — compact project maps</li>
+          <li>file-digest.sh — structural file skeletons</li>
+          <li>scratchpad.sh — in-session note system</li>
+        </ul>
+        <div class="price-row">
+          <span class="price">Free</span>
+          <a href="https://github.com/P1Piyush/ai-brain-toolkit" class="btn btn-free" target="_blank">Get on GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bundles">
+  <div class="container">
+    <div class="bundle-card">
+      <h3>Complete AI Dev Toolkit</h3>
+      <p>Everything above in one package. All MCP servers + Power Pack + Brain Toolkit.</p>
+      <div class="bundle-items">
+        <span>Database Explorer</span>
+        <span>FileForge</span>
+        <span>API Tester</span>
+        <span>Claude Power Pack</span>
+        <span>Brain Toolkit</span>
+      </div>
+      <div>
+        <span class="original-price">$96</span>
+        <span class="savings">Save 40%</span>
+      </div>
+      <div class="bundle-price">$59</div>
+      <a href="#" class="btn btn-primary">Get the Bundle</a>
+    </div>
+  </div>
+</section>
+
+<section class="compat">
+  <div class="container">
+    <h2>Works With</h2>
+    <div class="compat-logos">
+      <span>Claude Code</span>
+      <span>Cursor</span>
+      <span>Windsurf</span>
+      <span>Antigravity</span>
+      <span>Any MCP Client</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Start building faster today</h2>
+    <p>Every MCP server installs in one command. No subscriptions. Free updates forever.</p>
+    <a href="https://github.com/P1Piyush" class="btn btn-primary" target="_blank">Browse All Products</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Built by <a href="https://github.com/P1Piyush" target="_blank">P1Piyush</a> — MIT Licensed</p>
+  </div>
+</footer>
+
+</body>
+</html>
