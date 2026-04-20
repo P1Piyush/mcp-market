@@ -1,1076 +1,1112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MCP Market — Premium Tools for AI Coding Agents</title>
-  <meta name="description" content="46+ tools for AI coding agents. Database, Docker, Git, API testing, file generation, code analysis MCP servers. Works with Claude Code, Cursor, Windsurf.">
-  <meta name="keywords" content="MCP server, Claude Code, AI coding agent, developer tools, Cursor, Windsurf, database MCP, Docker MCP, git analysis">
-  <meta property="og:title" content="MCP Market — 46+ Tools for AI Coding Agents">
-  <meta property="og:description" content="Production-ready MCP servers that give your AI agent superpowers. Database, Docker, Git, API testing, file generation, code analysis. One-command install.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://p1piyush.github.io/mcp-market/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MCP Market — 46+ Tools for AI Coding Agents">
-  <meta name="twitter:description" content="6 MCP servers + Power Pack for Claude Code, Cursor, Windsurf. Database, Docker, Git, API testing, file generation, code analysis. $39 bundle.">
-  <link rel="canonical" href="https://p1piyush.github.io/mcp-market/">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "MCP Market — AI Coding Agent Tools",
-    "description": "46+ production-ready MCP server tools for AI coding agents. Database, Docker, Git, API testing, file generation, code analysis.",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "macOS, Linux, Windows",
-    "offers": {
-      "@type": "AggregateOffer",
-      "lowPrice": "9",
-      "highPrice": "39",
-      "priceCurrency": "USD",
-      "offerCount": "8"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "P1Piyush",
-      "url": "https://github.com/P1Piyush"
-    }
-  }
-  </script>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>⚡</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #050507;
-      --surface: #0c0c10;
-      --surface-2: #14141a;
-      --surface-3: #1a1a24;
-      --border: #1e1e2a;
-      --text: #e8e8f0;
-      --text-muted: #7878a0;
-      --accent: #6366f1;
-      --accent-light: #818cf8;
-      --accent-glow: rgba(99, 102, 241, 0.12);
-      --green: #22c55e;
-      --orange: #f59e0b;
-      --pink: #ec4899;
-      --radius: 16px;
-      --font: 'Inter', -apple-system, system-ui, sans-serif;
-      --mono: 'JetBrains Mono', monospace;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MCP Market — Premium Tools for AI Coding Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+@property --angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+@property --gpos  { syntax:'<percentage>'; initial-value:0%; inherits:false; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:       #030008;
+  --bg2:      #07010f;
+  --surface:  #0d0819;
+  --surface2: #120e22;
+  --v1: #7c3aed;
+  --v2: #a78bfa;
+  --v3: #c4b5fd;
+  --cy: #22d3ee;
+  --gr: #4ade80;
+  --pk: #f472b6;
+  --text:       #ede9ff;
+  --text-muted: #6b6890;
+  --text-dim:   #2e2b48;
+  --border:     rgba(124,58,237,0.15);
+  --border2:    rgba(167,139,250,0.3);
+  --ff-display: 'Space Grotesk', sans-serif;
+  --ff-mono:    'JetBrains Mono', monospace;
+}
 
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--ff-display);
+  overflow-x:hidden;
+}
 
-    /* ── 3D Canvas ─────────────────── */
-    #bg-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
+/* ── NOISE ── */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.03;pointer-events:none;z-index:9998;
+}
 
-    /* ── Overlay content ───────────── */
-    .page-content {
-      position: relative;
-      z-index: 1;
-    }
+/* ── SCROLL PROGRESS ── */
+#sp{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--v1),var(--cy),var(--v2));z-index:9999;box-shadow:0 0 10px var(--v1),0 0 20px rgba(124,58,237,.4);}
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+/* ── CURSOR ── */
+#cd,#cr{position:fixed;border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);}
+#cd{width:7px;height:7px;background:var(--v2);mix-blend-mode:screen;transition:width .15s,height .15s,background .2s;}
+#cr{width:32px;height:32px;border:1px solid rgba(167,139,250,.35);}
 
-    /* ── Nav ────────────────────────── */
-    nav {
-      padding: 20px 0;
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(5, 5, 7, 0.6);
-      backdrop-filter: blur(20px) saturate(1.4);
-      border-bottom: 1px solid rgba(99, 102, 241, 0.08);
-      transition: background 0.3s;
-    }
-    nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.03em; }
-    .logo span { background: linear-gradient(135deg, var(--accent), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .nav-cta {
-      padding: 8px 20px;
-      background: var(--accent);
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.3s;
-      border: 1px solid transparent;
-    }
-    .nav-cta:hover { background: transparent; border-color: var(--accent); color: var(--accent-light); }
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:60px;
+  background:rgba(3,0,8,.75);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  transition:border-color .3s;
+}
+nav.sc{border-bottom-color:var(--border2);}
+.logo{
+  font-family:var(--ff-mono);font-size:14px;font-weight:600;
+  color:var(--v2);text-decoration:none;letter-spacing:.06em;
+  display:flex;align-items:center;gap:2px;
+}
+.logo-br{color:rgba(167,139,250,.4);}
+.launch-pill{
+  font-family:var(--ff-mono);font-size:11px;padding:4px 14px;
+  border-radius:100px;color:var(--v2);letter-spacing:.1em;
+  background:rgba(124,58,237,.1);
+  border:1px solid rgba(124,58,237,.35);
+  animation:pill-pulse 3s ease infinite;
+}
+@keyframes pill-pulse{
+  0%,100%{box-shadow:none;}
+  50%{box-shadow:0 0 16px rgba(124,58,237,.3);}
+}
+.nav-btn{
+  font-family:var(--ff-mono);font-size:13px;font-weight:500;
+  padding:8px 20px;background:var(--v1);color:#fff;
+  border-radius:7px;text-decoration:none;letter-spacing:.02em;
+  transition:background .2s,box-shadow .2s,transform .15s;
+  will-change:transform;
+}
+.nav-btn:hover{background:#6d28d9;box-shadow:0 0 24px rgba(124,58,237,.5);transform:translateY(-1px);}
 
-    /* ── Hero ───────────────────────── */
-    .hero {
-      padding: 180px 0 120px;
-      text-align: center;
-      position: relative;
-    }
-    .hero-glow {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -60%);
-      width: 800px; height: 500px;
-      background: radial-gradient(ellipse, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 20px;
-      background: rgba(99, 102, 241, 0.08);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      color: var(--accent-light);
-      margin-bottom: 32px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+/* ── CANVAS ── */
+#grid-canvas,#particle-canvas{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+}
+#particle-canvas{z-index:1;}
 
-    .hero h1 {
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      margin-bottom: 24px;
-    }
-    .hero h1 .line { display: block; }
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--accent-light), var(--pink), var(--orange));
-      background-size: 200% 200%;
-      animation: gradient-shift 5s ease infinite;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:2;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:100px 24px 80px;
+  overflow:hidden;
+}
 
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 48px;
-      line-height: 1.7;
-    }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-hero {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      border: none; cursor: pointer;
-    }
-    .btn-hero-primary {
-      background: linear-gradient(135deg, var(--accent), #7c3aed);
-      color: white;
-      box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
-    }
-    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(99, 102, 241, 0.4); }
-    .btn-hero-secondary {
-      background: var(--surface-2);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-hero-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
+/* Central glow orb */
+.hero-orb{
+  position:absolute;
+  top:50%;left:50%;
+  width:600px;height:500px;
+  transform:translate(-50%,-60%);
+  background:radial-gradient(ellipse,rgba(124,58,237,.28) 0%,rgba(34,211,238,.06) 40%,transparent 70%);
+  pointer-events:none;
+  animation:orb-breathe 5s ease-in-out infinite;
+}
+@keyframes orb-breathe{
+  0%,100%{transform:translate(-50%,-60%) scale(1);}
+  50%{transform:translate(-50%,-60%) scale(1.12);}
+}
 
-    /* ── Stats ──────────────────────── */
-    .stats {
-      padding: 40px 0 80px;
-      text-align: center;
-    }
-    .stats-row {
-      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
-    }
-    .stat {
-      opacity: 0.7;
-    }
-    .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent-light); }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+.hero-tag{
+  font-family:var(--ff-mono);font-size:11px;letter-spacing:.25em;
+  color:var(--cy);text-transform:uppercase;margin-bottom:20px;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:6px 16px;border-radius:100px;
+  background:rgba(34,211,238,.06);
+  border:1px solid rgba(34,211,238,.2);
+  animation:fade-in .6s .1s forwards;
+}
+.tag-dot{
+  width:6px;height:6px;background:var(--cy);border-radius:50%;
+  animation:dot-blink 2s ease-in-out infinite;
+}
+@keyframes dot-blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes fade-in{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 
-    /* ── Section header ────────────── */
-    .section-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .section-header h2 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    .section-header p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 500px;
-      margin: 0 auto;
-    }
+.hero-h1{
+  font-size:clamp(44px,7.5vw,110px);
+  font-weight:800;
+  line-height:1.0;
+  letter-spacing:-.04em;
+  margin-bottom:24px;
+  animation:fade-in .7s .25s forwards;
+  max-width:1000px;
+}
+.h1-line2{
+  display:block;
+  background:linear-gradient(135deg,var(--v2) 0%,var(--cy) 50%,var(--v3) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  background-size:200% 200%;
+  animation:grad-shift 4s ease infinite;
+}
+@keyframes grad-shift{
+  0%,100%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+}
 
-    /* ── Products ───────────────────── */
-    .products { padding: 80px 0; }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .product-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .product-card:hover {
-      border-color: rgba(99, 102, 241, 0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(99, 102, 241, 0.06);
-    }
-    .product-card:hover::before { opacity: 1; }
+/* Rotating words */
+.hero-rotate-wrap{
+  position:relative;display:inline-block;
+  overflow:hidden;vertical-align:bottom;
+}
+.rotate-word{
+  display:block;position:relative;
+  background:linear-gradient(135deg,var(--v2),var(--cy));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  transform-origin:bottom center;
+}
+.rotate-word.out{
+  animation:word-out .45s cubic-bezier(.55,0,1,.45) forwards;
+  position:absolute;inset:0;
+}
+.rotate-word.in{
+  animation:word-in .45s cubic-bezier(0,.55,.45,1) forwards;
+}
+@keyframes word-out{from{transform:translateY(0) rotateX(0);opacity:1;}to{transform:translateY(-60%) rotateX(-30deg);opacity:0;}}
+@keyframes word-in{from{transform:translateY(60%) rotateX(30deg);opacity:0;}to{transform:translateY(0) rotateX(0);opacity:1;}}
 
-    .product-card .tag {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 6px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 20px;
-    }
-    .tag-mcp { background: rgba(99, 102, 241, 0.12); color: var(--accent-light); }
-    .tag-bundle { background: rgba(34, 197, 94, 0.12); color: var(--green); }
-    .tag-toolkit { background: rgba(245, 158, 11, 0.12); color: var(--orange); }
+.hero-sub{
+  font-size:18px;color:var(--text-muted);max-width:540px;
+  line-height:1.75;margin-bottom:40px;
+  animation:fade-in .7s .45s forwards;
+}
 
-    .product-card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.02em; }
-    .product-card .desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+.hero-actions{
+  display:flex;gap:14px;align-items:center;justify-content:center;
+  flex-wrap:wrap;margin-bottom:56px;
+  animation:fade-in .7s .6s forwards;
+}
 
-    .tool-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
-    .tool-chip {
-      padding: 4px 10px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;
+  background:var(--v1);color:#fff;
+  font-family:var(--ff-display);font-size:15px;font-weight:600;
+  text-decoration:none;border-radius:9px;
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;will-change:transform;
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(124,58,237,.5),0 4px 20px rgba(0,0,0,.4);}
+.btn-primary:hover::after{opacity:1;}
 
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-    .price { font-size: 1.6rem; font-weight: 800; }
-    .price small { font-size: 0.75rem; font-weight: 400; color: var(--text-muted); margin-left: 4px; }
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 30px;
+  background:transparent;color:var(--text-muted);
+  font-family:var(--ff-display);font-size:15px;font-weight:500;
+  text-decoration:none;border:1px solid var(--border2);border-radius:9px;
+  transition:color .2s,border-color .2s,background .2s,transform .2s;will-change:transform;
+}
+.btn-outline:hover{color:var(--text);border-color:var(--v2);background:rgba(124,58,237,.07);transform:translateY(-2px);}
 
-    .btn-buy {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 24px;
-      background: var(--accent);
-      color: white;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-    .btn-buy:hover { background: #5558e6; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3); }
-    .btn-buy svg { width: 14px; height: 14px; }
+/* ── STATS STRIP ── */
+.stats-strip{
+  display:flex;gap:0;
+  border:1px solid rgba(167,139,250,.18);border-radius:14px;
+  background:rgba(13,8,25,.7);backdrop-filter:blur(20px);
+  overflow:hidden;
+  animation:fade-in .7s .75s forwards;
+}
+.stat{
+  padding:20px 40px;display:flex;flex-direction:column;
+  align-items:center;gap:5px;position:relative;
+}
+.stat+.stat::before{
+  content:'';position:absolute;left:0;top:18%;bottom:18%;
+  width:1px;background:rgba(167,139,250,.14);
+}
+.stat-n{
+  font-family:var(--ff-mono);font-size:32px;font-weight:700;
+  color:var(--v2);line-height:1;
+}
+.stat-l{
+  font-family:var(--ff-mono);font-size:10px;
+  color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;
+}
 
-    /* ── Bundle ─────────────────────── */
-    .bundle { padding: 80px 0; }
-    .bundle-card {
-      background: linear-gradient(135deg, var(--surface) 0%, rgba(99, 102, 241, 0.04) 100%);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      border-radius: 20px;
-      padding: 64px 48px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .bundle-card::before {
-      content: '';
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
-    }
-    .bundle-card::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: -100px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.04) 0%, transparent 70%);
-    }
-    .bundle-card > * { position: relative; z-index: 1; }
-    .bundle-card h3 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.03em; }
-    .bundle-card .subtitle { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 32px; }
+/* ── SECTION BASE ── */
+section{position:relative;z-index:2;}
+.inner{max-width:1200px;margin:0 auto;padding:0 24px;}
+.sec-tag{
+  font-family:var(--ff-mono);font-size:11px;letter-spacing:.25em;
+  color:var(--v2);text-transform:uppercase;display:block;margin-bottom:14px;
+}
+.sec-h2{
+  font-size:clamp(28px,4vw,52px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.1;
+}
 
-    .bundle-items {
-      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 36px;
-    }
-    .bundle-items span {
-      padding: 8px 18px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .65s ease,transform .65s ease;}
+.rv.on{opacity:1;transform:none;}
+.rv-l{opacity:0;transform:translateX(-32px);transition:opacity .65s ease,transform .65s ease;}
+.rv-l.on{opacity:1;transform:none;}
+.rv-r{opacity:0;transform:translateX(32px);transition:opacity .65s ease,transform .65s ease;}
+.rv-r.on{opacity:1;transform:none;}
 
-    .bundle-pricing { margin-bottom: 36px; }
-    .original-price { text-decoration: line-through; color: var(--text-muted); font-size: 1.2rem; }
-    .savings-badge {
-      display: inline-block;
-      padding: 4px 14px;
-      background: rgba(34, 197, 94, 0.12);
-      color: var(--green);
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-left: 12px;
-    }
-    .bundle-price { font-size: 3.5rem; font-weight: 900; margin: 12px 0; letter-spacing: -0.03em; }
+/* ── PRODUCTS ── */
+.products{padding:130px 0;}
+.products .sec-header{text-align:center;margin-bottom:70px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px;}
 
-    .btn-bundle {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 16px 40px;
-      background: linear-gradient(135deg, var(--accent), #7c3aed);
-      color: white;
-      border-radius: 14px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s;
-      box-shadow: 0 0 50px rgba(99, 102, 241, 0.25);
-    }
-    .btn-bundle:hover { transform: translateY(-3px); box-shadow: 0 0 80px rgba(99, 102, 241, 0.35); }
+/* Spinning neon border card */
+.card{
+  --angle:0deg;
+  position:relative;padding:28px;border-radius:16px;cursor:default;
+  background:var(--surface);
+  border:1px solid transparent;
+  background-clip:padding-box;
+  transition:transform .1s;
+  will-change:transform;
+  overflow:hidden;
+}
+/* clean glow border on hover */
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:16px;z-index:0;
+  box-shadow:inset 0 0 0 1px rgba(167,139,250,0);
+  transition:box-shadow .3s;pointer-events:none;
+}
+.card:hover::before{box-shadow:inset 0 0 0 1px rgba(167,139,250,.45), 0 0 24px rgba(124,58,237,.18);}
 
-    /* ── Terminal demo ─────────────── */
-    .terminal-section { padding: 80px 0; }
-    .terminal {
-      max-width: 700px;
-      margin: 0 auto;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .terminal-bar {
-      display: flex; align-items: center; gap: 8px;
-      padding: 14px 20px;
-      background: var(--surface-2);
-      border-bottom: 1px solid var(--border);
-    }
-    .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .terminal-dot.red { background: #ff5f57; }
-    .terminal-dot.yellow { background: #febc2e; }
-    .terminal-dot.green { background: #28c840; }
-    .terminal-title { margin-left: 12px; font-size: 0.8rem; color: var(--text-muted); font-family: var(--mono); }
-    .terminal-body {
-      padding: 24px;
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      line-height: 1.8;
-    }
-    .terminal-body .prompt { color: var(--green); }
-    .terminal-body .cmd { color: var(--text); }
-    .terminal-body .output { color: var(--text-muted); }
-    .terminal-body .highlight { color: var(--accent-light); }
+/* shimmer removed */
+.card::after{ display:none; }
 
-    /* ── Compat ─────────────────────── */
-    .compat { padding: 80px 0; text-align: center; }
-    .compat-logos {
-      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
-    }
-    .compat-logos span {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      padding: 14px 28px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-    .compat-logos span:hover { border-color: var(--accent); color: var(--text); }
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;}
+.card-ico{
+  width:44px;height:44px;border-radius:11px;
+  background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.1));
+  border:1px solid rgba(124,58,237,.25);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.badge{
+  font-family:var(--ff-mono);font-size:10px;letter-spacing:.12em;
+  color:var(--v2);background:rgba(124,58,237,.1);
+  border:1px solid rgba(124,58,237,.2);padding:3px 10px;
+  border-radius:100px;text-transform:uppercase;
+}
+.badge.cs{color:var(--text-muted);background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);}
+.card-name{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
+.card-desc{font-size:13.5px;color:var(--text-muted);line-height:1.65;margin-bottom:18px;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:22px;}
+.tag{
+  font-family:var(--ff-mono);font-size:11px;
+  color:var(--cy);background:rgba(34,211,238,.05);
+  border:1px solid rgba(34,211,238,.1);padding:3px 9px;border-radius:4px;
+  transition:background .2s,border-color .2s;
+}
+.card:hover .tag{background:rgba(34,211,238,.09);border-color:rgba(34,211,238,.18);}
+.card-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:18px;border-top:1px solid rgba(167,139,250,.08);
+}
+.price{font-family:var(--ff-mono);font-size:18px;font-weight:600;}
+.price small{font-size:11px;color:var(--text-muted);font-weight:400;}
+.cta-s{
+  font-family:var(--ff-mono);font-size:12px;font-weight:500;
+  padding:8px 18px;border-radius:7px;text-decoration:none;
+  transition:all .2s;letter-spacing:.04em;
+}
+.cta-s.fill{background:var(--v1);color:#fff;border:1px solid transparent;}
+.cta-s.fill:hover{background:#6d28d9;box-shadow:0 0 16px rgba(124,58,237,.4);}
+.cta-s.ghost{background:transparent;color:var(--text-muted);border:1px solid rgba(167,139,250,.15);}
+.cta-s.ghost:hover{border-color:var(--border2);color:var(--text);}
 
-    /* ── CTA ────────────────────────── */
-    .cta {
-      padding: 120px 0;
-      text-align: center;
-      position: relative;
-    }
-    .cta-glow {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; position: relative; }
-    .cta p { color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; position: relative; }
+/* ── INSTALL SECTION ── */
+.install{padding:100px 0;}
+.install-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.install-h2{font-size:46px;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px;}
+.install-h2 em{font-style:normal;color:var(--v2);}
+.install-sub{color:var(--text-muted);font-size:15px;line-height:1.75;margin-bottom:32px;}
+.steps{display:flex;flex-direction:column;gap:18px;}
+.step{display:flex;gap:16px;align-items:flex-start;}
+.step-n{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  border:1px solid rgba(167,139,250,.3);color:var(--v2);
+  font-family:var(--ff-mono);font-size:12px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-t{font-size:14px;color:var(--text-muted);line-height:1.65;}
+.step-t code{
+  font-family:var(--ff-mono);font-size:12px;color:var(--cy);
+  background:rgba(34,211,238,.07);padding:1px 6px;border-radius:3px;
+}
 
-    /* ── Footer ─────────────────────── */
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    footer a { color: var(--accent-light); text-decoration: none; }
+/* Terminal */
+.term{
+  background:#050312;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(124,58,237,.22);
+  box-shadow:0 0 60px rgba(124,58,237,.12),0 24px 60px rgba(0,0,0,.5);
+  font-family:var(--ff-mono);font-size:13px;
+}
+.term-bar{
+  display:flex;align-items:center;gap:7px;
+  padding:11px 16px;background:rgba(255,255,255,.025);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.term-bar .d{width:12px;height:12px;border-radius:50%;}
+.term-bar .d.r{background:#ff5f57;} .term-bar .d.y{background:#ffbd2e;} .term-bar .d.g{background:#28c840;}
+.term-label{flex:1;text-align:center;font-size:11.5px;color:var(--text-muted);}
+.term-body{padding:18px 20px;min-height:300px;max-height:340px;overflow:hidden;}
+.tl{display:flex;gap:8px;margin-bottom:5px;line-height:1.55;}
+.tl .p{color:var(--v2);}
+.tl .c{color:var(--text);}
+.tl .o{color:var(--text-muted);}
+.tl .s{color:var(--gr);}
+.tl .i{color:var(--cy);}
+.tl .j{color:#c084fc;padding-left:10px;font-size:12px;}
+.tcursor{display:inline-block;width:7px;height:13px;background:var(--v2);vertical-align:middle;animation:blink 1s step-end infinite;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
 
-    /* ── Responsive ─────────────────── */
-    @media (max-width: 768px) {
-      .product-grid { grid-template-columns: 1fr; }
-      .hero { padding: 140px 0 80px; }
-      .hero h1 { font-size: 2.5rem; }
-      .bundle-card { padding: 40px 24px; }
-      .bundle-price { font-size: 2.5rem; }
-      .stats-row { gap: 32px; }
-      .cta h2 { font-size: 2rem; }
-    }
+/* ── BUNDLE ── */
+.bundle{padding:80px 0 120px;}
+.bundle-card{
+  border-radius:24px;overflow:hidden;
+  border:1px solid rgba(124,58,237,.3);
+  background:linear-gradient(135deg,rgba(124,58,237,.08) 0%,rgba(3,0,8,.5) 50%,rgba(34,211,238,.04) 100%);
+  backdrop-filter:blur(24px);padding:64px;
+  display:grid;grid-template-columns:1fr 260px;gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.bundle-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(124,58,237,.12),transparent 60%);
+  pointer-events:none;
+}
+.bsave{
+  font-family:var(--ff-mono);font-size:11px;letter-spacing:.2em;
+  color:var(--gr);background:rgba(74,222,128,.07);
+  border:1px solid rgba(74,222,128,.18);padding:4px 12px;
+  border-radius:100px;display:inline-block;margin-bottom:16px;
+}
+.bundle-h2{font-size:42px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;}
+.bundle-sub{color:var(--text-muted);font-size:15px;line-height:1.7;margin-bottom:28px;}
+.bfeats{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;margin-bottom:36px;}
+.bfeat{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text-muted);}
+.bfeat::before{content:'✓';color:var(--v2);font-weight:700;font-size:12px;}
+.bprice-box{text-align:center;position:relative;z-index:1;}
+.bold-price{font-family:var(--ff-mono);font-size:68px;font-weight:700;color:var(--v2);line-height:1;}
+.bsup{font-size:24px;vertical-align:super;line-height:0;}
+.bwas{font-family:var(--ff-mono);font-size:18px;color:var(--text-muted);text-decoration:line-through;margin-bottom:4px;}
+.bsaved{font-family:var(--ff-mono);font-size:12px;color:var(--gr);margin-bottom:20px;}
+.bsmall{font-family:var(--ff-mono);font-size:11px;color:var(--text-muted);line-height:1.7;}
 
-    /* ── FAQ ────────────────────────── */
-    .faq { padding: 80px 0; }
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .faq-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-    }
-    .faq-item h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .faq-item p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    @media (max-width: 768px) {
-      .faq-grid { grid-template-columns: 1fr; }
-    }
+/* ── CLIENTS ── */
+.clients{padding:60px 0;border-top:1px solid var(--border);}
+.clients-lbl{text-align:center;font-family:var(--ff-mono);font-size:10px;letter-spacing:.25em;color:var(--text-dim);text-transform:uppercase;margin-bottom:28px;}
+.clients-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.chip{
+  font-family:var(--ff-mono);font-size:13px;font-weight:500;
+  padding:10px 22px;border-radius:9px;color:var(--text-muted);
+  border:1px solid rgba(167,139,250,.1);background:rgba(255,255,255,.02);
+  transition:all .25s;cursor:default;
+}
+.chip:hover{color:var(--text);border-color:var(--border2);background:rgba(124,58,237,.07);transform:translateY(-2px);}
 
-    /* ── Scroll reveal ─────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-  </style>
+/* ── FAQ ── */
+.faq{padding:120px 0;}
+.faq .sec-header{text-align:center;margin-bottom:56px;}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:8px;}
+.fi{
+  border:1px solid rgba(167,139,250,.1);border-radius:12px;
+  background:var(--surface);overflow:hidden;transition:border-color .2s;
+}
+.fi.open{border-color:rgba(124,58,237,.4);}
+.fq{
+  padding:20px 24px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-size:15.5px;font-weight:500;user-select:none;transition:color .2s;
+}
+.fi.open .fq{color:var(--v2);}
+.fchev{
+  width:22px;height:22px;border-radius:50%;border:1px solid rgba(167,139,250,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:var(--text-muted);flex-shrink:0;
+  transition:transform .3s,border-color .2s,background .2s,color .2s;
+}
+.fi.open .fchev{transform:rotate(180deg);border-color:var(--v2);background:rgba(124,58,237,.12);color:var(--v2);}
+.fa-wrap{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);}
+.fi.open .fa-wrap{max-height:160px;}
+.fa{padding:0 24px 20px;color:var(--text-muted);font-size:14.5px;line-height:1.75;}
+
+/* ── CTA ── */
+.cta-sec{padding:100px 0 60px;text-align:center;}
+.cta-h2{font-size:56px;font-weight:800;letter-spacing:-.04em;margin-bottom:16px;}
+.cta-sub{color:var(--text-muted);font-size:18px;margin-bottom:40px;}
+.cta-pills{display:flex;gap:20px;justify-content:center;margin-top:24px;flex-wrap:wrap;}
+.cta-pill{font-family:var(--ff-mono);font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:6px;}
+.cta-pill::before{content:'·';color:var(--v2);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);padding:20px 24px;
+  text-align:center;font-family:var(--ff-mono);font-size:12px;color:var(--text-dim);
+  position:relative;z-index:2;
+}
+footer a{color:var(--v2);text-decoration:none;}
+
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .install-grid,.bundle-card{grid-template-columns:1fr;}
+  .bfeats{grid-template-columns:1fr;}
+  .grid{grid-template-columns:1fr;}
+  .stats-strip{flex-wrap:wrap;}
+  .hero-h1{font-size:clamp(38px,10vw,72px);}
+}
+</style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+<div id="sp"></div>
+<div id="cd"></div>
+<div id="cr"></div>
 
-<div class="page-content">
+<!-- BG Canvases -->
+<canvas id="grid-canvas"></canvas>
+<canvas id="particle-canvas"></canvas>
 
-<nav>
-  <div class="container">
-    <div class="logo">MCP<span>Market</span></div>
-    <a href="https://piyushma.gumroad.com/l/zkvwzq" class="nav-cta" target="_blank">Get the Bundle</a>
-  </div>
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#"><span class="logo-br">[</span>&nbsp;MCPMarket&nbsp;<span class="logo-br">]</span></a>
+  <div class="launch-pill">LAUNCH30 · 30% OFF</div>
+  <a class="nav-btn" href="https://piyushma.gumroad.com/l/zkvwzq" target="_blank">Get Bundle</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-badge"><span class="dot"></span> Launch Pricing — Use LAUNCH30</div>
-    <h1>
-      <span class="line">Supercharge your</span>
-      <span class="line"><em>AI coding agent</em></span>
-    </h1>
-    <p>Production-ready MCP servers that give your AI agent superpowers. Database access, file generation, API testing — one command install.</p>
-    <div class="hero-buttons">
-      <a href="https://piyushma.gumroad.com/l/zkvwzq" class="btn-hero btn-hero-primary" target="_blank">Get Complete Toolkit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#products" class="btn-hero btn-hero-secondary">View Products</a>
-    </div>
+  <div class="hero-orb"></div>
+  <div class="hero-tag"><span class="tag-dot"></span>Model Context Protocol · Production Ready</div>
+  <h1 class="hero-h1">
+    Give your AI agent<br>
+    <span class="h1-line2">
+      <span class="hero-rotate-wrap">
+        <span class="rotate-word" id="rw">superpowers</span>
+      </span>
+    </span>
+  </h1>
+  <p class="hero-sub">Production-ready MCP servers that connect your AI agent to databases, files, APIs, and more — one command install.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://piyushma.gumroad.com/l/zkvwzq" target="_blank">
+      Get Complete Toolkit
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a class="btn-outline" href="#products">View Products</a>
+  </div>
+  <div class="stats-strip">
+    <div class="stat"><div class="stat-n" data-count="46">0</div><div class="stat-l">Tools Included</div></div>
+    <div class="stat"><div class="stat-n" data-count="14">0</div><div class="stat-l">Languages</div></div>
+    <div class="stat"><div class="stat-n" data-count="80" data-sfx="%">0%</div><div class="stat-l">Token Savings</div></div>
+    <div class="stat"><div class="stat-n" data-text="1 cmd">1 cmd</div><div class="stat-l">To Install</div></div>
   </div>
 </section>
 
-<section class="stats">
-  <div class="container">
-    <div class="stats-row">
-      <div class="stat"><div class="stat-value">46+</div><div class="stat-label">Tools Included</div></div>
-      <div class="stat"><div class="stat-value">14</div><div class="stat-label">Languages</div></div>
-      <div class="stat"><div class="stat-value">60-80%</div><div class="stat-label">Token Savings</div></div>
-      <div class="stat"><div class="stat-value">1 cmd</div><div class="stat-label">Install</div></div>
-    </div>
-  </div>
-</section>
+<!-- DIVIDER -->
+<div style="position:relative;z-index:2;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.25),transparent)"></div>
 
+<!-- PRODUCTS -->
 <section class="products" id="products">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>MCP Servers</h2>
-      <p>Each server installs in one command and works with any MCP client.</p>
+  <div class="inner">
+    <div class="sec-header rv">
+      <span class="sec-tag">MCP Servers</span>
+      <h2 class="sec-h2">One command away from<br>total AI agent power</h2>
     </div>
-    <div class="product-grid">
+    <div class="grid">
 
-      <div class="product-card reveal">
-        <span class="tag tag-mcp">MCP Server</span>
-        <h3>Database Explorer</h3>
-        <p class="desc">Connect your AI agent directly to PostgreSQL, MySQL, or SQLite. Query schemas, run safe queries, generate migrations.</p>
-        <div class="tool-list">
-          <span class="tool-chip">list_tables</span>
-          <span class="tool-chip">describe_table</span>
-          <span class="tool-chip">query</span>
-          <span class="tool-chip">explain_query</span>
-          <span class="tool-chip">full_schema</span>
-          <span class="tool-chip">sample_data</span>
-          <span class="tool-chip">table_stats</span>
-          <span class="tool-chip">generate_migration</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$19+ <small>one-time</small></span>
-          <a href="https://piyushma.gumroad.com/l/jvofa" class="btn-buy" target="_blank">Get It <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
+      <div class="card rv" style="--d:.05s">
+        <div class="card-head"><div class="card-ico">🗄️</div><span class="badge">MCP Server</span></div>
+        <h3 class="card-name">Database Explorer</h3>
+        <p class="card-desc">Connect your AI agent to PostgreSQL, MySQL, or SQLite. Query schemas, run safe queries, generate migrations.</p>
+        <div class="tags"><span class="tag">list_tables</span><span class="tag">describe_table</span><span class="tag">query</span><span class="tag">explain_query</span><span class="tag">generate_migration</span></div>
+        <div class="card-foot"><div class="price">$19+ <small>one-time</small></div><a class="cta-s fill" href="https://piyushma.gumroad.com/l/jvofa" target="_blank">Get It →</a></div>
       </div>
 
-      <div class="product-card reveal">
-        <span class="tag tag-mcp">MCP Server</span>
-        <h3>FileForge</h3>
-        <p class="desc">Generate PDFs, Word docs, and Excel spreadsheets. Convert between CSV, JSON, Markdown, and HTML. Everything local.</p>
-        <div class="tool-list">
-          <span class="tool-chip">generate_pdf</span>
-          <span class="tool-chip">generate_docx</span>
-          <span class="tool-chip">generate_xlsx</span>
-          <span class="tool-chip">read_csv</span>
-          <span class="tool-chip">csv_to_json</span>
-          <span class="tool-chip">json_to_csv</span>
-          <span class="tool-chip">markdown_to_html</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$9+ <small>one-time</small></span>
-          <a href="https://piyushma.gumroad.com/l/lnyjht" class="btn-buy" target="_blank">Get It <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
+      <div class="card rv" style="--d:.1s">
+        <div class="card-head"><div class="card-ico">📄</div><span class="badge">MCP Server</span></div>
+        <h3 class="card-name">FileForge</h3>
+        <p class="card-desc">Generate PDFs, Word docs, and Excel spreadsheets. Convert between CSV, JSON, Markdown, HTML. All local.</p>
+        <div class="tags"><span class="tag">generate_pdf</span><span class="tag">generate_docx</span><span class="tag">generate_xlsx</span><span class="tag">csv_to_json</span><span class="tag">markdown_to_html</span></div>
+        <div class="card-foot"><div class="price">$9+ <small>one-time</small></div><a class="cta-s fill" href="https://piyushma.gumroad.com/l/lnyjht" target="_blank">Get It →</a></div>
       </div>
 
-      <div class="product-card reveal">
-        <span class="tag tag-mcp">MCP Server</span>
-        <h3>API Tester</h3>
-        <p class="desc">Postman-grade HTTP testing from your AI agent. Make requests, save collections, parse curl commands, generate docs.</p>
-        <div class="tool-list">
-          <span class="tool-chip">http_request</span>
-          <span class="tool-chip">save_request</span>
-          <span class="tool-chip">list_collections</span>
-          <span class="tool-chip">run_collection</span>
-          <span class="tool-chip">api_health_check</span>
-          <span class="tool-chip">generate_api_docs</span>
-          <span class="tool-chip">curl_to_request</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$9+ <small>one-time</small></span>
-          <a href="https://piyushma.gumroad.com/l/nspti" class="btn-buy" target="_blank">Get It <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
+      <div class="card rv" style="--d:.15s">
+        <div class="card-head"><div class="card-ico">🔌</div><span class="badge">MCP Server</span></div>
+        <h3 class="card-name">API Tester</h3>
+        <p class="card-desc">Postman-grade HTTP testing from your AI agent. Requests, collections, curl parsing, auto-generated API docs.</p>
+        <div class="tags"><span class="tag">http_request</span><span class="tag">save_request</span><span class="tag">run_collection</span><span class="tag">api_health_check</span><span class="tag">generate_api_docs</span></div>
+        <div class="card-foot"><div class="price">$9+ <small>one-time</small></div><a class="cta-s fill" href="https://piyushma.gumroad.com/l/nspti" target="_blank">Get It →</a></div>
       </div>
 
-      <div class="product-card reveal">
-        <span class="tag tag-bundle">14 Languages + Toolkit</span>
-        <h3>Claude Code Power Pack</h3>
-        <p class="desc">Rules for 14 languages, brain toolkit that cuts token usage 60-80%, hook templates, and interactive installer.</p>
-        <div class="tool-list">
-          <span class="tool-chip">TypeScript</span>
-          <span class="tool-chip">Python</span>
-          <span class="tool-chip">Go</span>
-          <span class="tool-chip">Rust</span>
-          <span class="tool-chip">Java</span>
-          <span class="tool-chip">Kotlin</span>
-          <span class="tool-chip">Swift</span>
-          <span class="tool-chip">PHP</span>
-          <span class="tool-chip">C++</span>
-          <span class="tool-chip">C#</span>
-          <span class="tool-chip">Dart</span>
-          <span class="tool-chip">Perl</span>
-          <span class="tool-chip">Web</span>
-          <span class="tool-chip">Brain Toolkit</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$19+ <small>one-time</small></span>
-          <a href="https://piyushma.gumroad.com/l/bxvkdb" class="btn-buy" target="_blank">Get It <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
+      <div class="card rv" style="--d:.2s">
+        <div class="card-head"><div class="card-ico">⚡</div><span class="badge">MCP Server</span></div>
+        <h3 class="card-name">Claude Code Power Pack</h3>
+        <p class="card-desc">Rules for 14 languages, brain toolkit cutting token usage 60–80%, hook templates, interactive installer.</p>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">Python</span><span class="tag">Go</span><span class="tag">Rust</span><span class="tag">Swift</span><span class="tag">Brain Toolkit</span></div>
+        <div class="card-foot"><div class="price">$19+ <small>one-time</small></div><a class="cta-s fill" href="https://piyushma.gumroad.com/l/bxvkdb" target="_blank">Get It →</a></div>
       </div>
 
-      <div class="product-card reveal">
-        <span class="tag tag-mcp">MCP Server</span>
-        <h3>Git Intelligence</h3>
-        <p class="desc">Deep git analysis for your AI agent. Code churn hotspots, smart blame, bug origin tracing, changelogs, branch risk scoring.</p>
-        <div class="tool-list">
-          <span class="tool-chip">code_churn</span>
-          <span class="tool-chip">smart_blame</span>
-          <span class="tool-chip">bug_finder</span>
-          <span class="tool-chip">changelog_gen</span>
-          <span class="tool-chip">branch_compare</span>
-          <span class="tool-chip">contributor_stats</span>
-          <span class="tool-chip">risk_assessment</span>
-          <span class="tool-chip">commit_search</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$12+ <small>one-time</small></span>
-          <a href="#" class="btn-buy" target="_blank">Coming Soon</a>
-        </div>
+      <div class="card rv" style="--d:.25s">
+        <div class="card-head"><div class="card-ico">🔍</div><span class="badge cs">Coming Soon</span></div>
+        <h3 class="card-name">Git Intelligence</h3>
+        <p class="card-desc">Deep git analysis. Code churn hotspots, smart blame, bug origin tracing, changelogs, branch risk scoring.</p>
+        <div class="tags"><span class="tag">code_churn</span><span class="tag">smart_blame</span><span class="tag">bug_finder</span><span class="tag">changelog_gen</span><span class="tag">risk_assessment</span></div>
+        <div class="card-foot"><div class="price">$12+ <small>one-time</small></div><a class="cta-s ghost" href="#">Coming Soon</a></div>
       </div>
 
-      <div class="product-card reveal">
-        <span class="tag tag-mcp">MCP Server</span>
-        <h3>Docker Ops</h3>
-        <p class="desc">Manage Docker from your AI agent. List containers, tail logs, inspect configs, monitor resources, run safe commands inside containers.</p>
-        <div class="tool-list">
-          <span class="tool-chip">list_containers</span>
-          <span class="tool-chip">container_logs</span>
-          <span class="tool-chip">inspect</span>
-          <span class="tool-chip">start/stop/restart</span>
-          <span class="tool-chip">list_images</span>
-          <span class="tool-chip">compose_status</span>
-          <span class="tool-chip">resource_usage</span>
-          <span class="tool-chip">exec_command</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$12+ <small>one-time</small></span>
-          <a href="#" class="btn-buy" target="_blank">Coming Soon</a>
-        </div>
+      <div class="card rv" style="--d:.3s">
+        <div class="card-head"><div class="card-ico">🐳</div><span class="badge cs">Coming Soon</span></div>
+        <h3 class="card-name">Docker Ops</h3>
+        <p class="card-desc">Manage Docker from your AI agent. Containers, logs, inspect, resources, safe exec. Full control.</p>
+        <div class="tags"><span class="tag">list_containers</span><span class="tag">container_logs</span><span class="tag">inspect</span><span class="tag">compose_status</span><span class="tag">exec_command</span></div>
+        <div class="card-foot"><div class="price">$12+ <small>one-time</small></div><a class="cta-s ghost" href="#">Coming Soon</a></div>
       </div>
 
-      <div class="product-card reveal">
-        <span class="tag tag-mcp">MCP Server</span>
-        <h3>Codebase Intelligence</h3>
-        <p class="desc">Static analysis for AI agents. Complexity scoring, dead code detection, dependency mapping, duplicate finder, secret scanning, architecture health grades.</p>
-        <div class="tool-list">
-          <span class="tool-chip">complexity</span>
-          <span class="tool-chip">dead_code</span>
-          <span class="tool-chip">dependency_graph</span>
-          <span class="tool-chip">duplicates</span>
-          <span class="tool-chip">security_scan</span>
-          <span class="tool-chip">architecture</span>
-          <span class="tool-chip">file_analysis</span>
-          <span class="tool-chip">project_summary</span>
-        </div>
-        <div class="price-row">
-          <span class="price">$12+ <small>one-time</small></span>
-          <a href="#" class="btn-buy" target="_blank">Coming Soon</a>
-        </div>
+      <div class="card rv" style="--d:.35s">
+        <div class="card-head"><div class="card-ico">🧠</div><span class="badge cs">Coming Soon</span></div>
+        <h3 class="card-name">Codebase Intelligence</h3>
+        <p class="card-desc">Static analysis for AI agents. Complexity, dead code, dependencies, duplicates, secret scanning, architecture health.</p>
+        <div class="tags"><span class="tag">complexity</span><span class="tag">dead_code</span><span class="tag">dependency_graph</span><span class="tag">security_scan</span><span class="tag">architecture</span></div>
+        <div class="card-foot"><div class="price">$12+ <small>one-time</small></div><a class="cta-s ghost" href="#">Coming Soon</a></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<section class="terminal-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>One-Command Install</h2>
-      <p>Every tool is ready in seconds.</p>
-    </div>
-    <div class="terminal reveal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">terminal — zsh</span>
+<div style="position:relative;z-index:2;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.2),transparent)"></div>
+
+<!-- INSTALL -->
+<section class="install">
+  <div class="inner">
+    <div class="install-grid">
+      <div class="rv-l">
+        <span class="sec-tag">One-Command Install</span>
+        <h2 class="install-h2">Up and running<br>in <em>60 seconds</em></h2>
+        <p class="install-sub">Each tool ships with an automated installer. No manual environment setup, no dependency hell.</p>
+        <div class="steps">
+          <div class="step"><div class="step-n">1</div><div class="step-t">Run <code>./install.sh</code> — auto-creates venv and installs all deps</div></div>
+          <div class="step"><div class="step-n">2</div><div class="step-t">Paste one JSON snippet into your MCP client config</div></div>
+          <div class="step"><div class="step-n">3</div><div class="step-t">Open <code>claude</code> or <code>cursor</code> — tools are live immediately</div></div>
+        </div>
       </div>
-      <div class="terminal-body">
-        <div><span class="prompt">$</span> <span class="cmd">./install.sh</span></div>
-        <div><span class="output">Creating virtual environment...</span></div>
-        <div><span class="output">Installing dependencies...</span></div>
-        <div><span class="highlight">✓ MCP server ready</span></div>
-        <br>
-        <div><span class="output">Add this to your MCP config:</span></div>
-        <div><span class="highlight">{</span></div>
-        <div><span class="highlight">  "database-explorer": {</span></div>
-        <div><span class="highlight">    "command": "python3",</span></div>
-        <div><span class="highlight">    "args": ["server.py"]</span></div>
-        <div><span class="highlight">  }</span></div>
-        <div><span class="highlight">}</span></div>
-        <br>
-        <div><span class="prompt">$</span> <span class="cmd">claude</span></div>
-        <div><span class="output">Claude Code ▸ </span><span class="cmd">Show me all tables in my database</span></div>
-        <div><span class="highlight">✓ Found 12 tables. Here's the schema...</span></div>
+      <div class="rv-r">
+        <div class="term">
+          <div class="term-bar">
+            <div class="d r"></div><div class="d y"></div><div class="d g"></div>
+            <span class="term-label">terminal — zsh</span>
+          </div>
+          <div class="term-body" id="tb"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<div style="position:relative;z-index:2;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.2),transparent)"></div>
+
+<!-- BUNDLE -->
 <section class="bundle">
-  <div class="container">
-    <div class="bundle-card reveal">
-      <h3>Complete AI Dev Toolkit</h3>
-      <p class="subtitle">Everything in one package. All 6 MCP servers + Power Pack + Brain Toolkit.</p>
-      <div class="bundle-items">
-        <span>Database Explorer</span>
-        <span>FileForge</span>
-        <span>API Tester</span>
-        <span>Git Intelligence</span>
-        <span>Docker Ops</span>
-        <span>Codebase Intelligence</span>
-        <span>Power Pack (14 langs)</span>
-        <span>Brain Toolkit</span>
+  <div class="inner">
+    <div class="bundle-card rv">
+      <div>
+        <span class="bsave">SAVE 65% — BUNDLE DEAL</span>
+        <h2 class="bundle-h2">Complete AI Dev Toolkit</h2>
+        <p class="bundle-sub">Every server, every tool. One purchase. Free updates forever.</p>
+        <div class="bfeats">
+          <span class="bfeat">Database Explorer</span><span class="bfeat">FileForge</span>
+          <span class="bfeat">API Tester</span><span class="bfeat">Git Intelligence</span>
+          <span class="bfeat">Docker Ops</span><span class="bfeat">Codebase Intelligence</span>
+          <span class="bfeat">Power Pack (14 langs)</span><span class="bfeat">Brain Toolkit</span>
+        </div>
+        <a class="btn-primary" href="https://piyushma.gumroad.com/l/zkvwzq" target="_blank" style="display:inline-flex">
+          Get the Bundle →
+        </a>
       </div>
-      <div class="bundle-pricing">
-        <span class="original-price">$112</span>
-        <span class="savings-badge">SAVE 65%</span>
-        <div class="bundle-price">$39+</div>
-      </div>
-      <a href="https://piyushma.gumroad.com/l/zkvwzq" class="btn-bundle" target="_blank">Get the Bundle <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="compat">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>Works With Any MCP Client</h2>
-    </div>
-    <div class="compat-logos reveal">
-      <span>Claude Code</span>
-      <span>Cursor</span>
-      <span>Windsurf</span>
-      <span>Antigravity</span>
-      <span>Any MCP Client</span>
-    </div>
-  </div>
-</section>
-
-<section class="faq" id="faq">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>FAQ</h2>
-    </div>
-    <div class="faq-grid reveal">
-      <div class="faq-item">
-        <h4>What is MCP?</h4>
-        <p>Model Context Protocol — an open standard that lets AI coding agents connect to external tools. Your agent calls tools directly instead of you copy-pasting.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Which AI agents are supported?</h4>
-        <p>Claude Code, Cursor, Windsurf, Antigravity, and any other MCP-compatible client. The protocol is universal.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Is this a subscription?</h4>
-        <p>No. One-time purchase. Free updates forever. No recurring charges.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Does it run locally?</h4>
-        <p>Yes. Everything runs on your machine. No cloud, no data leaves your computer, no API keys needed for the tools themselves.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What if I only need one tool?</h4>
-        <p>Buy just the one you need. The bundle is there if you want everything at 65% off.</p>
-      </div>
-      <div class="faq-item">
-        <h4>How do I install?</h4>
-        <p>Run ./install.sh, paste a JSON snippet into your MCP config, done. Each server takes under 60 seconds.</p>
+      <div class="bprice-box">
+        <div class="bwas">$112</div>
+        <div class="bold-price">$39<span class="bsup">+</span></div>
+        <div class="bsaved">↑ save $73 — 65% off</div>
+        <div class="bsmall">One-time payment<br>Free updates forever<br>Use code LAUNCH30</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <div class="cta-glow"></div>
-  <div class="container">
-    <h2 class="reveal">Start building faster today</h2>
-    <p class="reveal">No subscriptions. Free updates forever. One-command install.</p>
-    <a href="https://piyushma.gumroad.com/l/zkvwzq" class="btn-bundle reveal" target="_blank">Get the Complete Toolkit <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<!-- CLIENTS -->
+<section class="clients">
+  <div class="inner">
+    <div class="clients-lbl rv">Works with any MCP client</div>
+    <div class="clients-row rv">
+      <div class="chip">Claude Code</div><div class="chip">Cursor</div>
+      <div class="chip">Windsurf</div><div class="chip">Antigravity</div>
+      <div class="chip">Any MCP Client</div>
+    </div>
+  </div>
+</section>
+
+<div style="position:relative;z-index:2;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.2),transparent)"></div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="inner">
+    <div class="sec-header rv">
+      <span class="sec-tag">FAQ</span>
+      <h2 class="sec-h2">Common questions</h2>
+    </div>
+    <div class="faq-list rv">
+      <div class="fi"><div class="fq">What is MCP?<span class="fchev">▾</span></div><div class="fa-wrap"><p class="fa">Model Context Protocol — an open standard letting AI coding agents connect to external tools. Your agent calls tools directly instead of you copy-pasting context.</p></div></div>
+      <div class="fi"><div class="fq">Which AI agents are supported?<span class="fchev">▾</span></div><div class="fa-wrap"><p class="fa">Claude Code, Cursor, Windsurf, Antigravity, and any other MCP-compatible client. The protocol is universal.</p></div></div>
+      <div class="fi"><div class="fq">Is this a subscription?<span class="fchev">▾</span></div><div class="fa-wrap"><p class="fa">No. One-time purchase. Free updates forever. No recurring charges, no lock-in.</p></div></div>
+      <div class="fi"><div class="fq">Does it run locally?<span class="fchev">▾</span></div><div class="fa-wrap"><p class="fa">Yes. Everything runs on your machine. No cloud, no data leaves your computer, no API keys needed for the tools themselves.</p></div></div>
+      <div class="fi"><div class="fq">What if I only need one tool?<span class="fchev">▾</span></div><div class="fa-wrap"><p class="fa">Buy just the one you need. The bundle is there if you want everything at 65% off.</p></div></div>
+      <div class="fi"><div class="fq">How do I install?<span class="fchev">▾</span></div><div class="fa-wrap"><p class="fa">Run <code style="font-family:var(--ff-mono);color:var(--cy)">./install.sh</code>, paste a JSON snippet into your MCP config, done. Under 60 seconds per server.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="inner">
+    <h2 class="cta-h2 rv">Start building faster today</h2>
+    <p class="cta-sub rv">No subscriptions. Free updates. One-command install.</p>
+    <div class="rv">
+      <a class="btn-primary" href="https://piyushma.gumroad.com/l/zkvwzq" target="_blank" style="display:inline-flex;font-size:16px;padding:16px 40px">Get the Complete Toolkit →</a>
+    </div>
+    <div class="cta-pills rv">
+      <span class="cta-pill">One-time payment</span>
+      <span class="cta-pill">Free updates forever</span>
+      <span class="cta-pill">Works locally</span>
+      <span class="cta-pill">Use LAUNCH30</span>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <p>Built by <a href="https://github.com/P1Piyush" target="_blank">P1Piyush</a></p>
-  </div>
+  Built by <a href="https://github.com/P1Piyush" target="_blank">P1Piyush</a> &nbsp;·&nbsp; © 2025 MCP Market
 </footer>
 
-</div>
-
-<!-- Three.js for 3D background -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// ── 3D Particle Network Background ──────────────────
-(function() {
-  const canvas = document.getElementById('bg-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// ──────────────────────────────────────────
+// SPRING HELPER
+// ──────────────────────────────────────────
+function sp(cur, tgt, vel, k=0.09, d=0.72) {
+  vel = (vel + (tgt - cur) * k) * d;
+  return { v: cur + vel, vel };
+}
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 50;
-
-  // Particles
-  const PARTICLE_COUNT = 300;
-  const positions = new Float32Array(PARTICLE_COUNT * 3);
-  const velocities = [];
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 100;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
-    velocities.push({
-      x: (Math.random() - 0.5) * 0.02,
-      y: (Math.random() - 0.5) * 0.02,
-      z: (Math.random() - 0.5) * 0.01
-    });
-  }
-
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-  const material = new THREE.PointsMaterial({
-    color: 0x6366f1,
-    size: 0.4,
-    transparent: true,
-    opacity: 0.6,
-    blending: THREE.AdditiveBlending
-  });
-
-  const particles = new THREE.Points(geometry, material);
-  scene.add(particles);
-
-  // Connection lines
-  const lineGeometry = new THREE.BufferGeometry();
-  const MAX_LINES = 500;
-  const linePositions = new Float32Array(MAX_LINES * 6);
-  lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
-  lineGeometry.setDrawRange(0, 0);
-
-  const lineMaterial = new THREE.LineBasicMaterial({
-    color: 0x6366f1,
-    transparent: true,
-    opacity: 0.08,
-    blending: THREE.AdditiveBlending
-  });
-
-  const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
-  scene.add(lines);
-
-  // Floating geometric shapes
-  const shapes = [];
-  const shapeGeo = [
-    new THREE.IcosahedronGeometry(1.5, 0),
-    new THREE.OctahedronGeometry(1.2, 0),
-    new THREE.TetrahedronGeometry(1.3, 0),
-  ];
-  const shapeMat = new THREE.MeshBasicMaterial({
-    color: 0x6366f1,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.12
-  });
-
-  for (let i = 0; i < 5; i++) {
-    const mesh = new THREE.Mesh(shapeGeo[i % 3], shapeMat.clone());
-    mesh.position.set(
-      (Math.random() - 0.5) * 80,
-      (Math.random() - 0.5) * 60,
-      (Math.random() - 0.5) * 30 - 10
-    );
-    mesh.material.opacity = 0.06 + Math.random() * 0.08;
-    mesh.userData = {
-      rotSpeed: { x: (Math.random() - 0.5) * 0.005, y: (Math.random() - 0.5) * 0.005 },
-      floatSpeed: 0.0005 + Math.random() * 0.001,
-      floatOffset: Math.random() * Math.PI * 2
-    };
-    scene.add(mesh);
-    shapes.push(mesh);
-  }
-
-  // Mouse interaction
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-
-  // Scroll parallax
-  let scrollY = 0;
-  window.addEventListener('scroll', () => { scrollY = window.scrollY; });
-
-  // Resize
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-
-  // Animation loop
-  let frame = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    frame++;
-
-    // Update particles
-    const pos = geometry.attributes.position.array;
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      pos[i * 3] += velocities[i].x;
-      pos[i * 3 + 1] += velocities[i].y;
-      pos[i * 3 + 2] += velocities[i].z;
-
-      // Wrap around
-      if (Math.abs(pos[i * 3]) > 50) velocities[i].x *= -1;
-      if (Math.abs(pos[i * 3 + 1]) > 50) velocities[i].y *= -1;
-      if (Math.abs(pos[i * 3 + 2]) > 30) velocities[i].z *= -1;
-    }
-    geometry.attributes.position.needsUpdate = true;
-
-    // Update lines (every 3 frames for perf)
-    if (frame % 3 === 0) {
-      let lineIdx = 0;
-      const lp = lineGeometry.attributes.position.array;
-      for (let i = 0; i < PARTICLE_COUNT && lineIdx < MAX_LINES; i++) {
-        for (let j = i + 1; j < PARTICLE_COUNT && lineIdx < MAX_LINES; j++) {
-          const dx = pos[i * 3] - pos[j * 3];
-          const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
-          const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
-          const dist = dx * dx + dy * dy + dz * dz;
-          if (dist < 120) {
-            lp[lineIdx * 6] = pos[i * 3];
-            lp[lineIdx * 6 + 1] = pos[i * 3 + 1];
-            lp[lineIdx * 6 + 2] = pos[i * 3 + 2];
-            lp[lineIdx * 6 + 3] = pos[j * 3];
-            lp[lineIdx * 6 + 4] = pos[j * 3 + 1];
-            lp[lineIdx * 6 + 5] = pos[j * 3 + 2];
-            lineIdx++;
-          }
-        }
-      }
-      lineGeometry.setDrawRange(0, lineIdx * 2);
-      lineGeometry.attributes.position.needsUpdate = true;
-    }
-
-    // Rotate shapes
-    shapes.forEach((s) => {
-      s.rotation.x += s.userData.rotSpeed.x;
-      s.rotation.y += s.userData.rotSpeed.y;
-      s.position.y += Math.sin(frame * s.userData.floatSpeed + s.userData.floatOffset) * 0.02;
-    });
-
-    // Camera follows mouse + scroll parallax
-    camera.position.x += (mouseX * 3 - camera.position.x) * 0.02;
-    camera.position.y += (-mouseY * 3 + scrollY * 0.01 - camera.position.y) * 0.02;
-    camera.lookAt(0, scrollY * 0.005, 0);
-
-    renderer.render(scene, camera);
-  }
-
-  animate();
+// ──────────────────────────────────────────
+// CUSTOM CURSOR
+// ──────────────────────────────────────────
+const cd = document.getElementById('cd');
+const cr = document.getElementById('cr');
+let mx=window.innerWidth/2, my=window.innerHeight/2;
+let rx=mx, ry=my, rvx=0, rvy=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+(function cursorTick() {
+  let sx=sp(rx,mx,rvx,.13,.7), sy=sp(ry,my,rvy,.13,.7);
+  rx=sx.v; rvx=sx.vel; ry=sy.v; rvy=sy.vel;
+  cd.style.left=mx+'px'; cd.style.top=my+'px';
+  cr.style.left=rx+'px'; cr.style.top=ry+'px';
+  requestAnimationFrame(cursorTick);
 })();
 
-// ── Scroll Reveal ───────────────────────
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 100);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-reveals.forEach(el => observer.observe(el));
+// ──────────────────────────────────────────
+// SCROLL PROGRESS
+// ──────────────────────────────────────────
+const spBar = document.getElementById('sp');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  spBar.style.width = (pct * 100) + '%';
+  document.getElementById('nav').classList.toggle('sc', window.scrollY > 40);
+}, {passive:true});
 
-// ── Smooth scroll for anchor links ─────
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+// ──────────────────────────────────────────
+// PERSPECTIVE GRID CANVAS (hero BG)
+// ──────────────────────────────────────────
+const gc = document.getElementById('grid-canvas');
+const gx = gc.getContext('2d');
+let GW, GH, offset = 0;
+
+function resizeGrid() { GW = gc.width = window.innerWidth; GH = gc.height = window.innerHeight; }
+resizeGrid();
+window.addEventListener('resize', resizeGrid);
+
+function drawGrid() {
+  gx.clearRect(0, 0, GW, GH);
+  offset = (offset + 0.4) % 60;
+  const horizon = GH * 0.72;
+  const vp = { x: GW / 2, y: horizon };
+  const cols = 24;
+  const spread = GW * 2.8;
+  const alpha = 0.08;
+
+  gx.strokeStyle = `rgba(124,58,237,${alpha})`;
+  gx.lineWidth = 0.6;
+
+  // Vertical lines (perspective)
+  for (let i = 0; i <= cols; i++) {
+    const t = i / cols;
+    const baseX = vp.x - spread / 2 + t * spread;
+    gx.beginPath();
+    gx.moveTo(vp.x, vp.y);
+    gx.lineTo(baseX, GH + 40);
+    gx.stroke();
+  }
+
+  // Horizontal lines (receding)
+  const rows = 16;
+  for (let i = 0; i <= rows; i++) {
+    const t = Math.pow((i + offset / 60) / rows, 1.6);
+    const y = vp.y + (GH - vp.y + 40) * t;
+    if (y > vp.y) {
+      const fade = (y - vp.y) / (GH - vp.y);
+      gx.strokeStyle = `rgba(124,58,237,${alpha * fade * 1.5})`;
+      // Compute x extent at this y
+      const yt = (y - vp.y) / (GH - vp.y);
+      const xl = vp.x - (spread / 2) * yt;
+      const xr = vp.x + (spread / 2) * yt;
+      gx.beginPath();
+      gx.moveTo(xl, y);
+      gx.lineTo(xr, y);
+      gx.stroke();
+    }
+  }
+
+  // Fade above horizon
+  const fade = gx.createLinearGradient(0, 0, 0, GH);
+  fade.addColorStop(0, 'rgba(3,0,8,1)');
+  fade.addColorStop(0.6, 'rgba(3,0,8,0.3)');
+  fade.addColorStop(0.72, 'rgba(3,0,8,0)');
+  fade.addColorStop(1, 'rgba(3,0,8,0.6)');
+  gx.fillStyle = fade;
+  gx.fillRect(0, 0, GW, GH);
+
+  requestAnimationFrame(drawGrid);
+}
+drawGrid();
+
+// ──────────────────────────────────────────
+// PARTICLES — physics repulsion
+// ──────────────────────────────────────────
+const pc = document.getElementById('particle-canvas');
+const px2 = pc.getContext('2d');
+let PW, PH, parts = [];
+
+function resizeP() { PW = pc.width = window.innerWidth; PH = pc.height = window.innerHeight; }
+resizeP();
+window.addEventListener('resize', () => { resizeP(); initParts(); });
+
+function initParts() {
+  parts = [];
+  const n = Math.min(Math.floor((PW * PH) / 12000), 80);
+  for (let i = 0; i < n; i++) {
+    parts.push({
+      x: Math.random() * PW, y: Math.random() * PH,
+      vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+      r: Math.random()*1.6+.4,
+      pulse: Math.random()*Math.PI*2,
+      ps: .018+Math.random()*.015
+    });
+  }
+}
+initParts();
+
+function drawParts() {
+  px2.clearRect(0, 0, PW, PH);
+  for (let i = 0; i < parts.length; i++) {
+    const p = parts[i];
+    p.pulse += p.ps;
+    // Mouse repulsion
+    const dx = p.x - mx, dy = p.y - my;
+    const dist = Math.sqrt(dx*dx+dy*dy);
+    if (dist < 130 && dist > 0) {
+      const f = (130-dist)/130 * .55;
+      p.vx += dx/dist*f; p.vy += dy/dist*f;
+    }
+    p.vx *= .982; p.vy *= .982;
+    const spd = Math.sqrt(p.vx*p.vx+p.vy*p.vy);
+    if (spd > 2.2) { p.vx=p.vx/spd*2.2; p.vy=p.vy/spd*2.2; }
+    p.x += p.vx; p.y += p.vy;
+    if (p.x<0){p.x=0;p.vx*=-.8;} if (p.x>PW){p.x=PW;p.vx*=-.8;}
+    if (p.y<0){p.y=0;p.vy*=-.8;} if (p.y>PH){p.y=PH;p.vy*=-.8;}
+
+    // Connections
+    for (let j = i+1; j < parts.length; j++) {
+      const q = parts[j];
+      const ex=p.x-q.x, ey=p.y-q.y, d2=ex*ex+ey*ey;
+      if (d2<10000) {
+        const a=(1-Math.sqrt(d2)/100)*.1;
+        px2.beginPath();
+        px2.strokeStyle=`rgba(124,58,237,${a})`;
+        px2.lineWidth=.5;
+        px2.moveTo(p.x,p.y); px2.lineTo(q.x,q.y);
+        px2.stroke();
+      }
+    }
+    // Mouse line
+    if (dist<180) {
+      px2.beginPath();
+      px2.strokeStyle=`rgba(167,139,250,${(1-dist/180)*.28})`;
+      px2.lineWidth=.8;
+      px2.moveTo(p.x,p.y); px2.lineTo(mx,my);
+      px2.stroke();
+    }
+    // Dot
+    const a2 = .35+Math.sin(p.pulse)*.18;
+    const r2 = p.r+Math.sin(p.pulse)*.3;
+    px2.beginPath();
+    px2.arc(p.x,p.y,r2,0,Math.PI*2);
+    px2.fillStyle=`rgba(167,139,250,${a2})`;
+    px2.fill();
+  }
+  requestAnimationFrame(drawParts);
+}
+requestAnimationFrame(drawParts);
+
+// ──────────────────────────────────────────
+// WORD ROTATE
+// ──────────────────────────────────────────
+const WORDS = ['superpowers','database access','file generation','API testing','git analysis'];
+const rwEl = document.getElementById('rw');
+let rwIdx = 0;
+setInterval(() => {
+  rwEl.classList.remove('in');
+  rwEl.classList.add('out');
+  setTimeout(() => {
+    rwIdx = (rwIdx+1) % WORDS.length;
+    rwEl.textContent = WORDS[rwIdx];
+    rwEl.classList.remove('out');
+    rwEl.classList.add('in');
+    setTimeout(() => rwEl.classList.remove('in'), 500);
+  }, 400);
+}, 2600);
+
+// ──────────────────────────────────────────
+// COUNTERS — spring overshoot
+// ──────────────────────────────────────────
+function animCount(el) {
+  if (el.dataset.text) { el.textContent = el.dataset.text; return; }
+  const tgt = parseInt(el.dataset.count), sfx = el.dataset.sfx||'';
+  let cur = 0, vel = 0, started = null;
+  function tick(ts) {
+    if (!started) started = ts;
+    const t = Math.min((ts-started)/2200, 1);
+    // Elastic out
+    const ease = t===1 ? 1 : 1-Math.pow(2,-10*t)*Math.cos((t*10-.75)*(2*Math.PI)/3);
+    el.textContent = Math.round(ease*tgt) + sfx;
+    if (t<1) requestAnimationFrame(tick);
+    else el.textContent = tgt+sfx;
+  }
+  requestAnimationFrame(tick);
+}
+let counted = false;
+const statsEl = document.querySelector('.stats-strip');
+new IntersectionObserver(ents => {
+  ents.forEach(e => { if (e.isIntersecting && !counted) { counted=true; document.querySelectorAll('[data-count]').forEach(animCount); }});
+},{threshold:.5}).observe(statsEl);
+
+// ──────────────────────────────────────────
+// SCROLL REVEALS — stagger by child
+// ──────────────────────────────────────────
+const rvObs = new IntersectionObserver(ents => {
+  ents.forEach(e => {
+    if (!e.isIntersecting) return;
+    const d = parseFloat(e.target.style.getPropertyValue('--d')||0)*1000;
+    setTimeout(() => e.target.classList.add('on'), d);
+    rvObs.unobserve(e.target);
+  });
+},{threshold:.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => rvObs.observe(el));
+
+// ──────────────────────────────────────────
+// SPRING CARD TILT
+// ──────────────────────────────────────────
+document.querySelectorAll('.card').forEach(card => {
+  let tRX=0,tRY=0,cRX=0,cRY=0,vRX=0,vRY=0;
+  let tSc=1,cSc=1,vSc=0;
+  let over=false, running=false;
+
+  function tick() {
+    const srx=sp(cRX,tRX,vRX,.1,.7), sry=sp(cRY,tRY,vRY,.1,.7), ssc=sp(cSc,tSc,vSc,.1,.74);
+    cRX=srx.v; vRX=srx.vel; cRY=sry.v; vRY=sry.vel; cSc=ssc.v; vSc=ssc.vel;
+    card.style.transform = `perspective(700px) rotateX(${cRX}deg) rotateY(${cRY}deg) scale(${cSc})`;
+    const still = Math.abs(cRX)<.01 && Math.abs(cRY)<.01 && Math.abs(cSc-tSc)<.001;
+    if (!over && still) { running=false; card.style.transform=''; }
+    else requestAnimationFrame(tick);
+  }
+
+  card.addEventListener('mouseenter', () => { over=true; tSc=1.035; if(!running){running=true;tick();} });
+  card.addEventListener('mousemove', e => {
+    const r=card.getBoundingClientRect();
+    const nx=(e.clientX-r.left)/r.width, ny=(e.clientY-r.top)/r.height;
+    tRX=(ny-.5)*-11; tRY=(nx-.5)*14;
+    card.style.setProperty('--mx',`${nx*100}%`);
+    card.style.setProperty('--my',`${ny*100}%`);
+  });
+  card.addEventListener('mouseleave', () => { over=false; tRX=0; tRY=0; tSc=1; });
+});
+
+// ──────────────────────────────────────────
+// MAGNETIC BUTTONS
+// ──────────────────────────────────────────
+document.querySelectorAll('.btn-primary,.btn-outline,.nav-btn').forEach(btn => {
+  let bcx=0,bcy=0,bvx=0,bvy=0,bover=false,brun=false;
+  function btick() {
+    const bx=sp(bcx,0,bvx,.08,.68), by_=sp(bcy,0,bvy,.08,.68);
+    bcx=bx.v; bvx=bx.vel; bcy=by_.v; bvy=by_.vel;
+    btn.style.transform=`translate(${bcx}px,${bcy}px)`;
+    if (!bover && Math.abs(bcx)<.05 && Math.abs(bcy)<.05) { brun=false; btn.style.transform=''; }
+    else requestAnimationFrame(btick);
+  }
+  btn.addEventListener('mouseenter', () => { bover=true; if(!brun){brun=true;btick();} });
+  btn.addEventListener('mousemove', e => {
+    const r=btn.getBoundingClientRect();
+    const dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+    const sb=sp(bcx,dx*.28,bvx,.16,.65), sv=sp(bcy,dy*.25,bvy,.16,.65);
+    bcx=sb.v;bvx=sb.vel;bcy=sv.v;bvy=sv.vel;
+    btn.style.transform=`translate(${bcx}px,${bcy}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { bover=false; if(!brun){brun=true;btick();} });
+});
+
+// ──────────────────────────────────────────
+// HERO PARALLAX
+// ──────────────────────────────────────────
+const hh1 = document.querySelector('.hero-h1');
+const hsub = document.querySelector('.hero-sub');
+const horb = document.querySelector('.hero-orb');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (hh1) hh1.style.transform = `translateY(${y*.1}px)`;
+  if (hsub) hsub.style.transform = `translateY(${y*.06}px)`;
+  if (horb) horb.style.transform = `translate(-50%,-60%) translateY(${y*.18}px)`;
+},{passive:true});
+
+// ──────────────────────────────────────────
+// FAQ
+// ──────────────────────────────────────────
+document.querySelectorAll('.fi').forEach(fi => {
+  fi.querySelector('.fq').addEventListener('click', () => {
+    const open = fi.classList.contains('open');
+    document.querySelectorAll('.fi').forEach(f=>f.classList.remove('open'));
+    if(!open) fi.classList.add('open');
   });
 });
 
-// ── Countdown urgency banner ──────────
-(function() {
-  const endDate = new Date('2026-05-10T23:59:59');
-  const banner = document.createElement('div');
-  banner.id = 'urgency';
-  banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:999;background:linear-gradient(90deg,#6366f1,#7c3aed);padding:12px 24px;text-align:center;font-size:0.9rem;font-weight:600;color:white;display:flex;justify-content:center;align-items:center;gap:16px;';
-  function update() {
-    const now = new Date();
-    const diff = endDate - now;
-    if (diff <= 0) { banner.remove(); return; }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    banner.innerHTML = `Launch pricing ends in <span style="background:rgba(0,0,0,0.25);padding:4px 10px;border-radius:6px;margin:0 4px;">${d}d ${h}h</span> — Use code <span style="background:rgba(0,0,0,0.25);padding:4px 10px;border-radius:6px;margin:0 4px;">LAUNCH30</span> for 30% off <a href="https://piyushma.gumroad.com/l/zkvwzq" target="_blank" style="color:white;text-decoration:underline;margin-left:8px;">Get Bundle</a>`;
+// ──────────────────────────────────────────
+// TERMINAL — realistic, progress bar, typo
+// ──────────────────────────────────────────
+const TSCRIPT = [
+  {t:'cmd', text:'./install.sh'},
+  {t:'pause',ms:280},
+  {t:'out', text:'Checking Python...  ', sfx:'python 3.11.4 ✓', scolor:'#4ade80'},
+  {t:'out', text:'Creating virtual environment...'},
+  {t:'progress', label:'Installing packages', n:16, ms:70},
+  {t:'out', text:'Writing MCP config...'},
+  {t:'pause',ms:180},
+  {t:'success', text:'✓ Database Explorer ready  (4.1s)'},
+  {t:'blank'},
+  {t:'comment', text:'# Paste into mcp.json:'},
+  {t:'json', lines:[
+    '{ "mcpServers": {',
+    '  "database-explorer": {',
+    '    "command": "python3",',
+    '    "args":    ["server.py"]',
+    '  }',
+    '}'
+  ]},
+  {t:'blank'},
+  {t:'cmd', text:'claude', typo:'cladue', typoAt:3},
+  {t:'pause',ms:550},
+  {t:'prompt', text:'> Show me all tables in my database'},
+  {t:'pause',ms:420},
+  {t:'success', text:'✓ Found 12 tables. Analysing schema...'},
+  {t:'info', text:'  users, products, orders, sessions, logs...'},
+];
+
+let termDone=false;
+const tb = document.getElementById('tb');
+
+function startTerm() {
+  if (termDone) return; termDone=true;
+  let i=0;
+
+  function addLine(html, cls='') {
+    const d=document.createElement('div');
+    d.className='tl '+(cls||'');
+    d.style.cssText='opacity:0;transform:translateY(5px);transition:opacity .22s,transform .22s';
+    d.innerHTML=html;
+    tb.appendChild(d);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{d.style.opacity='1';d.style.transform='none';}));
+    return d;
   }
-  update();
-  setInterval(update, 60000);
-  document.body.appendChild(banner);
-  document.body.style.paddingBottom = '48px';
-})();
-</script>
 
-<!-- Gumroad overlay — buy without leaving page -->
-<script src="https://gumroad.com/js/gumroad.js"></script>
-
-<!-- Simple analytics — tracks visits and button clicks, no cookies, GDPR-safe -->
-<script>
-(function() {
-  const KEY = 'mcp_analytics';
-  const data = JSON.parse(localStorage.getItem(KEY) || '{"visits":0,"clicks":{}}');
-  data.visits++;
-  localStorage.setItem(KEY, JSON.stringify(data));
-
-  // Track all buy button clicks
-  document.addEventListener('click', function(e) {
-    const link = e.target.closest('a[href*="gumroad.com"]');
-    if (!link) return;
-    const href = link.getAttribute('href');
-    const slug = href.split('/l/')[1] || 'unknown';
-    data.clicks[slug] = (data.clicks[slug] || 0) + 1;
-    localStorage.setItem(KEY, JSON.stringify(data));
-
-    // Beacon to track externally — sends to a simple endpoint
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon('https://p1piyush.github.io/mcp-market/pixel.gif?' +
-        'e=click&s=' + slug + '&t=' + Date.now());
+  function next() {
+    if (i>=TSCRIPT.length) { addLine('<span class="tcursor"></span>',''); return; }
+    const s=TSCRIPT[i++];
+    if (s.t==='blank'){const sp=document.createElement('div');sp.style.height='7px';tb.appendChild(sp);next();return;}
+    if (s.t==='pause'){setTimeout(next,s.ms);return;}
+    if (s.t==='comment'){addLine(`<span style="color:#374151;font-style:italic">${s.text}</span>`);setTimeout(next,100);return;}
+    if (s.t==='json'){let ji=0;(function jnext(){if(ji>=s.lines.length){setTimeout(next,180);return;}addLine(`<span class="j">${s.lines[ji++]}</span>`);setTimeout(jnext,85);})();return;}
+    if (s.t==='out'){addLine(`<span class="o">${s.text}${s.sfx?`<span style="color:${s.scolor||'#4ade80'}">${s.sfx}</span>`:''}</span>`);setTimeout(next,150);return;}
+    if (s.t==='success'){addLine(`<span class="s">${s.text}</span>`);setTimeout(next,180);return;}
+    if (s.t==='info'){addLine(`<span class="i">${s.text}</span>`);setTimeout(next,160);return;}
+    if (s.t==='prompt'){addLine(`<span style="color:#a78bfa">${s.text}</span>`);setTimeout(next,180);return;}
+    if (s.t==='progress'){
+      const d=addLine(`<span class="o">${s.label} [<span id="pb"></span>]</span>`);
+      const bar=d.querySelector('#pb'); let fi=0;
+      (function fill(){if(fi<s.n){bar.textContent='█'.repeat(fi)+'░'.repeat(s.n-fi);fi++;setTimeout(fill,s.ms);}else{bar.textContent='█'.repeat(s.n);setTimeout(next,200);}})();
+      return;
     }
-  });
+    if (s.t==='cmd'){
+      const d=addLine(`<span class="p">❯</span>&nbsp;<span class="c"></span>`);
+      const cel=d.querySelector('.c');
+      const target = s.typo || s.text; let ci=0;
+      function tc(){
+        if(ci<target.length){
+          cel.textContent+=target[ci++];
+          const delay = (s.typo && ci===s.typoAt+1) ? 480 : 55+Math.random()*55;
+          setTimeout(tc,delay);
+        } else if (s.typo) {
+          // notice mistake, backspace, retype
+          setTimeout(()=>{
+            let dl=cel.textContent.length;
+            function bs(){
+              if(dl>s.typoAt){cel.textContent=cel.textContent.slice(0,-1);dl--;setTimeout(bs,75);}
+              else{let ri=s.typoAt;(function rt(){if(ri<s.text.length){cel.textContent+=s.text[ri++];setTimeout(rt,65+Math.random()*45);}else{setTimeout(next,300);}})();}
+            }
+            bs();
+          },700);
+        } else { setTimeout(next,300); }
+      }
+      setTimeout(tc,280);
+    }
+  }
+  next();
+}
 
-  // Log to console for easy checking
-  console.log('[MCP Analytics]', data);
-})();
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){startTerm();}});},{threshold:.25}).observe(tb);
 </script>
-
 </body>
 </html>
