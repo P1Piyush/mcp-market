@@ -14,6 +14,28 @@
   <meta name="twitter:title" content="MCP Market — 46+ Tools for AI Coding Agents">
   <meta name="twitter:description" content="6 MCP servers + Power Pack for Claude Code, Cursor, Windsurf. Database, Docker, Git, API testing, file generation, code analysis. $39 bundle.">
   <link rel="canonical" href="https://p1piyush.github.io/mcp-market/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MCP Market — AI Coding Agent Tools",
+    "description": "46+ production-ready MCP server tools for AI coding agents. Database, Docker, Git, API testing, file generation, code analysis.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "macOS, Linux, Windows",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "9",
+      "highPrice": "39",
+      "priceCurrency": "USD",
+      "offerCount": "8"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "P1Piyush",
+      "url": "https://github.com/P1Piyush"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -441,6 +463,34 @@
       .cta h2 { font-size: 2rem; }
     }
 
+    /* ── FAQ ────────────────────────── */
+    .faq { padding: 80px 0; }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .faq-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .faq-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── Scroll reveal ─────────────── */
     .reveal {
       opacity: 0;
@@ -720,6 +770,40 @@
       <span>Windsurf</span>
       <span>Antigravity</span>
       <span>Any MCP Client</span>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <h4>What is MCP?</h4>
+        <p>Model Context Protocol — an open standard that lets AI coding agents connect to external tools. Your agent calls tools directly instead of you copy-pasting.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Which AI agents are supported?</h4>
+        <p>Claude Code, Cursor, Windsurf, Antigravity, and any other MCP-compatible client. The protocol is universal.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is this a subscription?</h4>
+        <p>No. One-time purchase. Free updates forever. No recurring charges.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Does it run locally?</h4>
+        <p>Yes. Everything runs on your machine. No cloud, no data leaves your computer, no API keys needed for the tools themselves.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if I only need one tool?</h4>
+        <p>Buy just the one you need. The bundle is there if you want everything at 65% off.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I install?</h4>
+        <p>Run ./install.sh, paste a JSON snippet into your MCP config, done. Each server takes under 60 seconds.</p>
+      </div>
     </div>
   </div>
 </section>
